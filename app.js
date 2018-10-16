@@ -44,6 +44,8 @@ new Vue({
 
       if (!this.email) {
         this.errors.push('O email é obrigatório.');
+      } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) {
+        this.errors.push('O email é inválido.');
       }
 
       if (!this.dataNascimento) {
