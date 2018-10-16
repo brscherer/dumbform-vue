@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Dumb Form on Vue.js!</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>Vue.js DumbForm</h1>
+
+  <form id="form" @submit="checkForm" action="#" method="post">
+
+    <div class="errors" v-if="errors.length > 0">
+      <p>
+        <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+        <ul>
+          <li v-for="error in errors">{{ error }}</li>
+        </ul>
+      </p>
+    </div>
+
+    <p>
+      <label for="nome">Nome: </label>
+      <input id="nome" name="nome" v-model="nome" type="text">
+    </p>
+
+    <p>
+      <label for="telefone">Telefone: </label>
+      <input id="telefone" name="telefone" v-model="telefone" type="text">
+    </p>
+
+    <p>
+      <label for="email">Email: </label>
+      <input id="email" name="email" v-model="email" type="email">
+    </p>
+    <p>
+      <label for="dataNascimento">Data de Nascimento: </label>
+      <input id="dataNascimento" name="dataNascimento" v-model="dataNascimento" type="text">
+    </p>
+
+    <p>
+      <label for="cpf">CPF: </label>
+      <input id="cpf" name="cpf" v-model="cpf" type="text">
+    </p>
+
+    <p>
+      <label for="cidade">Cidade: </label>
+      <input id="cidade" name="cidade" v-model="cidade" type="text">
+    </p>
+
+    <p>
+      <label for="estado">Estado: </label>
+      <input id="estado" name="estado" v-model="estado" type="text">
+    </p>
+
+    <p>
+      <label for="linguagens">Linguagens: </label>
+      <select id="linguagens" name="linguagens" v-model="linguagens" type="text" multiple>
+        <option value="Javascript">Javascript</option>
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+        <option value="C#">C#</option>
+        <option value="PHP">PHP</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="idiomas">Idiomas: </label>
+      <input id="idiomas" name="idiomas" v-model="idiomas" type="text">
+    </p>
+
+    <p>
+      <label for="descricao">Descrição: </label>
+      <textarea rows="4" cols="50" id="descricao" name="descricao" v-model="descricao" type="text"></textarea>
+    </p>
+
+    <p>
+      <input type="submit" class="send" value="Enviar">
+    </p>
+
+  </form>
+  <script src="app.js"></script>
+</body>
+
+</html>
