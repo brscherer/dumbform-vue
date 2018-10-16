@@ -84,7 +84,9 @@ new Vue({
       }
 
       if (!this.descricao) {
-        this.errors.push('A descricao é obrigatória.');
+        this.errors.push('A descrição é obrigatória.');
+      } else if (this.descricao.length > 200) {
+        this.errors.push('A descrição tem tamanho máximo de 200 caracteres.');
       }
 
       e.preventDefault();
