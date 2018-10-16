@@ -13,7 +13,7 @@
 <body>
   <h1>Vue.js DumbForm</h1>
 
-  <form id="form" @submit="checkForm" action="#" method="post">
+  <form id="form" @submit="checkForm" action="#" method="post" v-if="seen">
 
     <div class="errors" v-if="errors.length > 0">
       <p>

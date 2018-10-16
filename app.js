@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   VMasker(document.getElementById("telefone")).maskPattern("(99) 999-999-999");
+  VMasker(document.getElementById("dataNascimento")).maskPattern("99/99/9999");
 })
 
 new Vue({
@@ -16,12 +17,15 @@ new Vue({
     linguagens: [],
     idiomas: null,
     descricao: null,
+    seen: true,
   },
   methods: {
     checkForm: function (e) {
-      if (!this.errors.length) {
+      if (this.errors.length = 0) {
         e.preventDefault();
-        document.getElementById('form').style = 'display: none;';
+        this.seen = false;
+      } else {
+        this.scrollTop();
       }
 
       this.errors = [];
@@ -48,33 +52,63 @@ new Vue({
         this.errors.push('O email é inválido.');
       }
 
-      if (!this.dataNascimento) {
-        this.errors.push('A data de nascimento é obrigatória.');
+       if (!this.dataNascimento) {
+         this.errors.push('A data de nascimento é obrigatória.');
+       } else {
+         this.validBirthday(this.dataNascimento);
+       }
+
+       if (!this.cpf) {
+         this.errors.push('O cpf é obrigatório.');
+       }
+
+       if (!this.cidade) {
+         this.errors.push('A cidade é obrigatória.');
+       }
+
+       if (!this.estado) {
+         this.errors.push('O estado é obrigatório.');
+       }
+
+       if (!this.linguagens) {
+         this.errors.push('As linguagens são obrigatórias.');
+       }
+
+       if (!this.idiomas) {
+         this.errors.push('Os idiomas são obrigatórios.');
+       }
+
+       if (!this.descricao) {
+         this.errors.push('A descricao é obrigatória.');
+       }
+
+      e.preventDefault();
+
+    },
+    validBirthday: function (date) {
+      this.errors = [];
+      if(date.length < 8) {
+        this.errors.push('Data inválida');
+        return;
+      }
+      const today = new Date();
+      const arrDate = date.split('/');
+      const bDay = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
+
+      if (arrDate[1] - 1 > 12) {
+        this.errors.push('Mês inválido');
+      } else if (arrDate[0] > 31) {
+        this.errors.push('Dia inválido');
+      } else if (arrDate[2] > today.getFullYear) {
+        this.errors.push('Ano inválido');
+      } else if ((Math.floor((today - bDay) / (1000 * 60 * 60 * 24 * 365))) < 18 ) {
+        this.errors.push('Menor de 18 anos');
       }
 
-      if (!this.cpf) {
-        this.errors.push('O cpf é obrigatório.');
-      }
-
-      if (!this.cidade) {
-        this.errors.push('A cidade é obrigatória.');
-      }
-
-      if (!this.estado) {
-        this.errors.push('O estado é obrigatório.');
-      }
-
-      if (!this.linguagens) {
-        this.errors.push('As linguagens são obrigatórias.');
-      }
-
-      if (!this.idiomas) {
-        this.errors.push('Os idiomas são obrigatórios.');
-      }
-
-      if (!this.descricao) {
-        this.errors.push('A descricao é obrigatória.');
-      }
+    },
+    scrollTop: function () {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     }
   }
 })
