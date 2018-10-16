@@ -69,10 +69,22 @@ new Vue({
 
       if (!this.cidade) {
         this.errors.push('A cidade é obrigatória.');
+      } else if (this.cidade.length > 50) {
+        this.errors.push('Limite de 50 caracteres no campo "cidade".');
+      } else if (!/^\D+$/.test(this.cidade)) {
+        this.errors.push('Não são permitidos números no campo "cidade".');
+      } else if (!/^[A-Za-zÀ-ú]+$/.test(this.cidade)) {
+        this.errors.push('Não são permitidos caracteres especiais no campo "cidade".');
       }
 
       if (!this.estado) {
         this.errors.push('O estado é obrigatório.');
+      } else if (this.estado.length > 50) {
+        this.errors.push('Limite de 50 caracteres no campo "estado".');
+      } else if (!/^\D+$/.test(this.estado)) {
+        this.errors.push('Não são permitidos números no campo "estado".');
+      } else if (!/^[A-Za-zÀ-ú]+$/.test(this.estado)) {
+        this.errors.push('Não são permitidos caracteres especiais no campo "estado".');
       }
 
       if (this.linguagens.length < 1) {
