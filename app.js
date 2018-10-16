@@ -54,6 +54,8 @@ new Vue({
 
        if (!this.dataNascimento) {
          this.errors.push('A data de nascimento é obrigatória.');
+       } else if (this.dataNascimento.length < 8) {
+        this.errors.push('Data inválida');
        } else {
          this.validBirthday(this.dataNascimento);
        }
@@ -87,10 +89,6 @@ new Vue({
     },
     validBirthday: function (date) {
       this.errors = [];
-      if(date.length < 8) {
-        this.errors.push('Data inválida');
-        return;
-      }
       const today = new Date();
       const arrDate = date.split('/');
       const bDay = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
