@@ -70,8 +70,39 @@
     </p>
 
     <p>
-      <label for="idiomas">Idiomas: </label>
-      <input id="idiomas" name="idiomas" v-model="idiomas" type="text">
+      <fieldset id="idiomas">
+        <legend>Idiomas</legend>
+        <p>
+          <input id="portugues" name="portugues" v-model="portugues" type="checkbox">
+          <label for="portugues" class="checkbox">Português</label>
+          <select id="portuguesLevel" name="portuguesLevel" v-model="portuguesLevel" type="text" v-if="portugues">
+            <option value="basico">Básico</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+            <option value="nativo">Nativo</option>
+          </select>
+        </p>
+        <p>
+          <input id="ingles" name="ingles" v-model="ingles" type="checkbox">
+          <label for="ingles" class="checkbox">Inglês</label>
+          <select id="inglesLevel" name="inglesLevel" v-model="inglesLevel" type="text" v-if="ingles">
+            <option value="basico">Básico</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+            <option value="nativo">Nativo</option>
+          </select>
+        </p>
+        <p>
+          <input id="espanhol" name="espanhol" v-model="espanhol" type="checkbox">
+          <label for="espanhol" class="checkbox">Espanhol</label>
+          <select id="espanholLevel" name="espanholLevel" v-model="espanholLevel" type="text" v-if="espanhol">
+            <option value="basico">Básico</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+            <option value="nativo">Nativo</option>
+          </select>
+        </p>
+      </fieldset>
     </p>
 
     <p>

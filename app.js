@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   VMasker(document.getElementById("telefone")).maskPattern("(99) 999-999-999");
   VMasker(document.getElementById("dataNascimento")).maskPattern("99/99/9999");
   VMasker(document.getElementById("cpf")).maskPattern("999.999.999-99");
-})
+});
 
 new Vue({
   el: '#form',
@@ -15,8 +15,13 @@ new Vue({
     cpf: null,
     cidade: null,
     estado: null,
+    portugues: null,
+    portuguesLevel: null,
+    ingles: null,
+    inglesLevel: null,
+    espanhol: null,
+    espanholLevel: null,
     linguagens: [],
-    idiomas: null,
     descricao: null,
     seen: true,
   },
@@ -91,8 +96,11 @@ new Vue({
         this.errors.push('Escolha pelo menos uma linguagem.');
       }
 
-      if (!this.idiomas) {
-        this.errors.push('Os idiomas são obrigatórios.');
+      if ((this.portugues && !this.portuguesLevel) ||
+        (this.ingles && !this.inglesLevel) ||
+        (this.espanhol && !this.espanholLevel)
+      ) {
+        this.errors.push('Indique seu nível no idioma selecionado.');
       }
 
       if (!this.descricao) {

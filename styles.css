@@ -35,6 +35,15 @@ input, textarea, select {
   line-height: 20px;
   margin-bottom: 5px;
   box-sizing: border-box;
+  background-color: #fff;
+}
+
+input[type="checkbox"] {
+  width: unset;
+}
+
+select, input[type="checkbox"], .checkbox {
+  cursor: pointer;
 }
 
 textarea {
