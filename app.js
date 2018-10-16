@@ -29,8 +29,6 @@ new Vue({
         this.scrollTop();
       }
 
-      this.errors = [];
-
       if (!this.nome) {
         this.errors.push('O nome é obrigatório.');
       } else if (this.nome.length > 50) {
@@ -77,8 +75,8 @@ new Vue({
         this.errors.push('O estado é obrigatório.');
       }
 
-      if (!this.linguagens) {
-        this.errors.push('As linguagens são obrigatórias.');
+      if (this.linguagens.length < 1) {
+        this.errors.push('Escolha pelo menos uma linguagem.');
       }
 
       if (!this.idiomas) {
@@ -93,7 +91,6 @@ new Vue({
 
     },
     validBirthday: function (date) {
-      this.errors = [];
       const today = new Date();
       const arrDate = date.split('/');
       const bDay = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
