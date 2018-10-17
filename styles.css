@@ -15,7 +15,6 @@ body {
 
 h1 {
   color: #0492ff;
-  margin-bottom: 50px;
 }
 
 form {
@@ -69,4 +68,5 @@ textarea {
   position: absolute;
   right: -100%;
   top: 35px;
+  width: 380px;
 }

@@ -4,10 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
   VMasker(document.getElementById("cpf")).maskPattern("999.999.999-99");
 });
 
+const errorComponent = {
+  props: {
+    errors: Array,
+  },
+  template: `
+  <div class="errors" v-if="errors.length > 0">
+    <p>
+      <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
+  </div>`
+};
+
 new Vue({
   el: '#form',
   data: {
-    errors: [],
+    confirm: false,
     nome: null,
     telefone: null,
     email: null,
@@ -23,13 +38,16 @@ new Vue({
     espanholLevel: null,
     linguagens: [],
     descricao: null,
-    seen: true,
+    errors: [],
+  },
+  components: {
+    'error-component': errorComponent
   },
   methods: {
     checkForm: function (e) {
       if (this.errors.length = 0) {
         e.preventDefault();
-        this.seen = false;
+        this.confirm = true;
       } else {
         this.scrollTop();
       }

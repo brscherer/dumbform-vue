@@ -13,16 +13,9 @@
 <body>
   <h1>Vue.js DumbForm</h1>
 
-  <form id="form" @submit="checkForm" action="#" method="post" v-if="seen">
+  <form id="form" @submit="checkForm" action="#" method="post" v-if="!confirm">
 
-    <div class="errors" v-if="errors.length > 0">
-      <p>
-        <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
-        <ul>
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
-      </p>
-    </div>
+    <error-component :errors="errors"></error-component>
 
     <p>
       <label for="nome">Nome: </label>
@@ -115,6 +108,12 @@
     </p>
 
   </form>
+
+  <div class="finish" v-if="confirm">
+    <h2>Confirme seu Cadastro</h2>
+    <span v-if="confirm">Nome: {{ nome }}</span>
+  </div>
+
   <script src="app.js"></script>
 </body>
 
