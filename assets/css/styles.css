@@ -61,12 +61,39 @@ textarea {
   background-color: #0070c6;
 }
 
-.errors {
-  background-color: #ff5858;
-  padding: 20px;
-  border-radius: 3px;
-  position: absolute;
-  right: -100%;
-  top: 35px;
-  width: 380px;
+.error {
+  color: #ff5858;
+  font-weight: bold;
+}
+
+.disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.finish {
+  background-color: #0492ff;
+  padding: 24px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finish h2 {
+  margin: 0 0 20px 0;
+}
+
+.finish ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  column-count: 2;
+  column-gap: 50px;
+}
+
+.finish li {
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
