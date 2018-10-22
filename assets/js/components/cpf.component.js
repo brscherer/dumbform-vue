@@ -23,53 +23,39 @@ export const CpfComponent = Vue.component('cpf-component', {
   },
   methods: {
     validCpf(cpf) {
+      cpf = cpf.replace(/[^\d]+/g, '');
+
+      const checkDuplicateDigit = digits => digits.split('').every((val, i, arr) => val === arr[0]);
+
+      const calculateCpfNumbers = (total) => (result, num, i) => result + (num * total--);
+
+      const checkDigit = (numbers, total) => numbers.split('').reduce(calculateCpfNumbers(total), 0);
+
+      const getDigit = (num) => (num > 1) ? (11 - num) : 0;
+
+      const isEqual = (a) => (b) => b === a
+
       const isValid = (cpf) => {
-        cpf = cpf.replace(/[^\d]+/g, '');
-        if (cpf == "00000000000" ||
-          cpf == "11111111111" ||
-          cpf == "22222222222" ||
-          cpf == "33333333333" ||
-          cpf == "44444444444" ||
-          cpf == "55555555555" ||
-          cpf == "66666666666" ||
-          cpf == "77777777777" ||
-          cpf == "88888888888" ||
-          cpf == "99999999999") {
-          return false;
+        const numbers = cpf.substring(0, 9);
+        const digits = cpf.substring(9);
+        let result = false;
+
+        if (!checkDuplicateDigit(digits)) {
+          const firstDigit = getDigit(checkDigit(numbers, 10) % 11);
+          const secondDigit = getDigit(checkDigit(numbers.concat(firstDigit), 11) % 11);
+          result = isEqual(digits)(`${firstDigit}${secondDigit}`);
         }
-        let add = 0;
-        for (let i = 0; i < 9; i++) {
-          add += parseInt(cpf.charAt(i)) * (10 - i);
-        }
-        let rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11) {
-          rev = 0;
-        }
-        if (rev != parseInt(cpf.charAt(9))) {
-          return false;
-        }
-        add = 0;
-        for (let i = 0; i < 10; i++) {
-          add += parseInt(cpf.charAt(i)) * (11 - i);
-        }
-        rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11) {
-          rev = 0;
-        }
-        if (rev != parseInt(cpf.charAt(10))) {
-          return false;
-        }
-        return true;
+        return result;
       }
 
       if (!cpf) {
-        this.error['cpf'] = 'O cpf é obrigatório.';
+        this.error['cpf'] = 'Type your CPF';
         return;
-      } else if (cpf.length < 14) {
-        this.error['cpf'] = 'O cpf está incompleto.';
+      } else if (cpf.length < 11) {
+        this.error['cpf'] = 'CPF is incomplete';
         return;
       } else if (!isValid(cpf)) {
-        this.error['cpf'] = 'CPF inválido.';
+        this.error['cpf'] = 'Invalid CPF';
         return;
       }
       this.error['cpf'] = '';

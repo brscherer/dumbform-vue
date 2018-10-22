@@ -1,36 +1,36 @@
 export const DescriptionComponent = Vue.component('description-component', {
   props: {
     error: Array,
-    descricao: {
+    description: {
       text: String
     },
   },
   template: `
   <p>
-    <span class="error" v-if="error.descricao">{{ error.descricao }}<br></span>
-    <label for="descricao">Descrição: </label>
-    <textarea rows="4" cols="50" id="descricao" name="descricao" v-model="descricao.text" type="text"></textarea>
+    <span class="error" v-if="error.description">{{ error.description }}<br></span>
+    <label for="description">Description: </label>
+    <textarea rows="4" cols="50" id="description" name="description" v-model="description.text" type="text"></textarea>
   </p>`,
   computed: {
     text(){
-      return this.descricao.text;
+      return this.description.text;
     }
   },
   watch: {
-    descricao(val) {
-      this.validDescription(val);
+    description(val) {
+      this.checkDescription(val);
     }
   },
   methods: {
-    validDescription(description) {
+    checkDescription(description) {
       if (!description) {
-        this.error['descricao'] = 'A descrição é obrigatória.';
+        this.error['description'] = 'Type your description';
         return;
       } else if (description.length > 200) {
-        this.error['descricao'] = 'A descrição tem tamanho máximo de 200 caracteres.';
+        this.error['description'] = 'Max 200 characters';
         return;
       }
-      this.error['descricao'] = '';
+      this.error['description'] = '';
     }
   }
 });

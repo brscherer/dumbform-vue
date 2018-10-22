@@ -22,7 +22,7 @@
 
       <skills-component :skills="skills" :error="error"></skills-component>
 
-      <description-component :descricao="descricao" :error="error"></description-component>
+      <description-component :description="description" :error="error"></description-component>
 
       <p>
         <input type="submit" class="send" value="Enviar">
@@ -30,35 +30,35 @@
 
     </form>
 
-    <div class="finish" v-if="confirm">
+    <div class="finish" v-else>
       <h2>Confirme seu Cadastro</h2>
       <ul>
         <li>
-          <span><b>Nome</b>: {{ about.nome }}</span>
+          <span><b>Name</b>: {{ about.name }}</span>
         </li>
         <li>
-          <span><b>Telefone</b>: {{ about.telefone }}</span>
+          <span><b>Phone</b>: {{ about.phone }}</span>
         </li>
         <li>
           <span><b>Email</b>: {{ about.email }}</span>
         </li>
         <li>
-          <span><b>Data de Nascimento</b>: {{ about.dataNascimento }}</span>
+          <span><b>Birthday</b>: {{ about.birthday }}</span>
         </li>
         <li>
           <span><b>CPF</b>: {{ about.cpf }}</span>
         </li>
         <li>
-          <span><b>Cidade</b>: {{ address.cidade }}</span>
+          <span><b>City</b>: {{ address.city }}</span>
         </li>
         <li>
-          <span><b>Estado</b>: {{ address.estado }}</span>
+          <span><b>State</b>: {{ address.state }}</span>
         </li>
         <li>
-          <span><b>Linguagens</b>: <span class="value" v-for="linguagem in skills.linguagens">{{ linguagem }}<br></span></span>
+          <span><b>Languages</b>: <span class="value" v-for="linguagem in skills.languages">{{ linguagem }}<br></span></span>
         </li>
         <li>
-          <span><b>Descrição</b>: {{ descricao.text }}</span>
+          <span><b>Description</b>: {{ description.text }}</span>
         </li>
       </ul>
     </div>

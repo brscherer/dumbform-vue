@@ -4,8 +4,8 @@ import { SkillsComponent } from './components/skills.component.js';
 import { DescriptionComponent } from './components/description.component.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  VMasker(document.getElementById("telefone")).maskPattern("(99) 999-999-999");
-  VMasker(document.getElementById("dataNascimento")).maskPattern("99/99/9999");
+  VMasker(document.getElementById("phone")).maskPattern("(99) 999-999-999");
+  VMasker(document.getElementById("birthday")).maskPattern("99/99/9999");
   VMasker(document.getElementById("cpf")).maskPattern("999.999.999-99");
 });
 
@@ -15,30 +15,30 @@ new Vue({
     confirm: false,
     error: [],
     about: {
-      nome: '',
-      telefone: '',
+      name: '',
+      phone: '',
       email: '',
-      dataNascimento: '',
+      birthday: '',
       cpf: '',
     },
     address: {
-      cidade: '',
-      estado: '',
+      city: '',
+      state: '',
     },
     skills: {
-      linguagens: [],
-      idiomas: {
-        portugues: null,
-        ingles: null,
-        espanhol: null,
+      languages: [],
+      idioms: {
+        portuguese: null,
+        english: null,
+        spanish: null,
         levels: {
-          portuguesLevel: '',
-          inglesLevel: '',
-          espanholLevel: '',
+          portugueseLevel: '',
+          englishLevel: '',
+          spanishLevel: '',
         }
       }
     },
-    descricao: {
+    description: {
       text: ''
     }
   },

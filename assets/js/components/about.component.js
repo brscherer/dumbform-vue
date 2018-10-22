@@ -4,10 +4,10 @@ export const AboutComponent = Vue.component('about-component', {
   props: {
     error: Array,
     about: {
-      nome: String,
-      telefone: String,
+      name: String,
+      phone: String,
       email: String,
-      dataNascimento: String,
+      birthday: String,
       cpf: String,
     }
   },
@@ -17,15 +17,15 @@ export const AboutComponent = Vue.component('about-component', {
   template: `
   <div>
     <p>
-      <span class="error" v-if="error.nome">{{ error.nome }}<br></span>
-      <label for="nome">Nome: </label>
-      <input id="nome" name="nome" v-model="about.nome" type="text">
+      <span class="error" v-if="error.name">{{ error.name }}<br></span>
+      <label for="name">Name: </label>
+      <input id="name" name="name" v-model="about.name" type="text">
     </p>
 
     <p>
-      <span class="error" v-if="error.telefone">{{ error.telefone }}<br></span>
-      <label for="telefone">Telefone: </label>
-      <input id="telefone" name="telefone" v-model="about.telefone" type="text">
+      <span class="error" v-if="error.phone">{{ error.phone }}<br></span>
+      <label for="phone">Phone: </label>
+      <input id="phone" name="phone" v-model="about.phone" type="text">
     </p>
 
     <p>
@@ -35,84 +35,84 @@ export const AboutComponent = Vue.component('about-component', {
     </p>
 
     <p>
-      <span class="error" v-if="error.dataNascimento">{{ error.dataNascimento }}<br></span>
-      <label for="dataNascimento">Data de Nascimento: </label>
-      <input id="dataNascimento" name="dataNascimento" v-model="about.dataNascimento" type="text">
+      <span class="error" v-if="error.birthday">{{ error.birthday }}<br></span>
+      <label for="birthday">Birthday: </label>
+      <input id="birthday" name="birthday" v-model="about.birthday" type="text">
     </p>
 
     <cpf-component :about="about" :error="error"></cpf-component>
   </div>`,
   computed: {
-    nome() {
-      return this.about.nome;
+    name() {
+      return this.about.name;
     },
-    telefone() {
-      return this.about.telefone;
+    phone() {
+      return this.about.phone;
     },
     email() {
       return this.about.email;
     },
-    dataNascimento() {
-      return this.about.dataNascimento;
+    birthday() {
+      return this.about.birthday;
     }
   },
   watch: {
-    nome(nome) {
-      this.validName(nome);
+    name(name) {
+      this.checkName(name);
     },
-    telefone(telefone) {
-      this.validPhone(telefone);
+    phone(phone) {
+      this.checkPhone(phone);
     },
     email(email) {
-      this.validEmail(email);
+      this.checkEmail(email);
     },
-    dataNascimento(dataNascimento) {
-      this.validBirthday(dataNascimento);
+    birthday(birthday) {
+      this.checkBirthday(birthday);
     }
   },
   methods: {
-    validName(name) {
+    checkName(name) {
       if (!name) {
-        this.error['nome'] = 'O nome é obrigatório.';
+        this.error['name'] = 'Type your name';
         return;
       } else if (name.length > 50) {
-        this.error['nome'] = 'Limite de 50 caracteres no nome.';
+        this.error['name'] = 'Max 50 characters';
         return;
       } else if (!/^\D+$/.test(name)) {
-        this.error['nome'] = 'Não são permitidos números no nome.';
+        this.error['name'] = 'Numbers are not allowed';
         return;
       } else if (!/^[A-Za-zÀ-ú ]+$/.test(name)) {
-        this.error['nome'] = 'Não são permitidos caracteres especiais no nome.';
+        this.error['name'] = 'Special characters are not allowed';
         return;
       }
-      this.error['nome'] = ''
+      this.error['name'] = ''
     },
-    validPhone(phone) {
+    checkPhone(phone) {
       if (!phone) {
-        this.error['telefone'] = 'O telefone é obrigatório.';
+        this.error['phone'] = 'Type your phone';
         return;
       } else if (phone.length < 16 && phone.length > 0) {
-        this.error['telefone'] = 'Número de telefone inválido.';
+        this.error['phone'] = 'Invalid phone';
         return;
       }
-      this.error['telefone'] = ''
+      this.error['phone'] = ''
     },
-    validEmail(email) {
+    checkEmail(email) {
       if (!email) {
-        this.error['email'] = 'O email é obrigatório.';
+        this.error['email'] = 'Type an email';
         return;
       } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
-        this.error['email'] = 'O email é inválido.';
+        this.error['email'] = 'Invalid email';
         return;
       }
       this.error['email'] = ''
     },
-    validBirthday(birthday) {
+    checkBirthday(birthday) {
       if (!birthday) {
-        this.error['dataNascimento'] = 'A data de nascimento é obrigatória.';
+        this.error['birthday'] = 'Type your birthday';
         return;
       } else if (birthday.length < 10) {
-        this.error['dataNascimento'] = 'Data inválida';
+        this.error['birthday'] = 'Invalid date';
         return;
       }
 
@@ -121,19 +121,19 @@ export const AboutComponent = Vue.component('about-component', {
       const bDay = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
 
       if (arrDate[1] - 1 > 12) {
-        this.error['dataNascimento'] = 'Mês inválido';
+        this.error['birthday'] = 'Invalid month';
         return;
       } else if (arrDate[0] > 31) {
-        this.error['dataNascimento'] = 'Dia inválido';
+        this.error['birthday'] = 'Invalid day';
         return;
       } else if (arrDate[2] > today.getFullYear) {
-        this.error['dataNascimento'] = 'Ano inválido';
+        this.error['birthday'] = 'Invalid year';
         return;
       } else if ((Math.floor((today - bDay) / (1000 * 60 * 60 * 24 * 365))) < 18) {
-        this.error['dataNascimento'] = 'Menor de 18 anos';
+        this.error['birthday'] = 'Under 18';
         return;
       }
-      this.error['dataNascimento'] = ''
+      this.error['birthday'] = ''
     },
   }
 });

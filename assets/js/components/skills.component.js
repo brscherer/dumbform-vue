@@ -2,15 +2,15 @@ export const SkillsComponent = Vue.component('skills-component', {
   props: {
     error: Array,
     skills: {
-      linguagens: Array,
-      idiomas: {
-        portugues: Boolean,
-        ingles: Boolean,
-        espanhol: Boolean,
+      languages: Array,
+      idioms: {
+        portuguese: Boolean,
+        english: Boolean,
+        spanish: Boolean,
         levels: {
-          portuguesLevel: String,
-          inglesLevel: String,
-          espanholLevel: String,
+          portugueseLevel: String,
+          englishLevel: String,
+          spanishLevel: String,
         }
       }
     },
@@ -19,8 +19,8 @@ export const SkillsComponent = Vue.component('skills-component', {
   <div>
     <p>
       <span class="error" v-if="error.linguagem">{{ error.linguagem }}<br></span>
-      <label for="linguagens">Linguagens: </label>
-      <select id="linguagens" name="linguagens" v-model="skills.linguagens" type="text" multiple>
+      <label for="languages">Languages: </label>
+      <select id="languages" name="languages" v-model="skills.languages" type="text" multiple>
         <option value="Javascript">Javascript</option>
         <option value="Java">Java</option>
         <option value="Python">Python</option>
@@ -30,105 +30,105 @@ export const SkillsComponent = Vue.component('skills-component', {
     </p>
 
     <p>
-      <fieldset id="idiomas">
-        <legend>Idiomas</legend>
-        <span class="error" v-if="error.idioma">{{ error.idioma }}<br></span>
+      <fieldset id="idioms">
+        <legend>Idioms</legend>
+        <span class="error" v-if="error.idioms">{{ error.idioms }}<br></span>
         <p>
-          <input id="portugues" name="portugues" v-model="skills.idiomas.portugues" type="checkbox">
-          <label for="portugues" class="checkbox">Português</label>
-          <select id="portuguesLevel" name="portuguesLevel" v-model="skills.idiomas.levels.portuguesLevel" type="text" v-if="skills.idiomas.portugues">
-            <option value="basico">Básico</option>
-            <option value="intermediario">Intermediário</option>
-            <option value="avancado">Avançado</option>
-            <option value="nativo">Nativo</option>
+          <input id="portuguese" name="portuguese" v-model="skills.idioms.portuguese" type="checkbox">
+          <label for="portuguese" class="checkbox">Portuguese</label>
+          <select id="portugueseLevel" name="portugueseLevel" v-model="skills.idioms.levels.portugueseLevel" type="text" v-if="skills.idioms.portuguese">
+            <option value="basico">Basic</option>
+            <option value="intermediario">Intermediate</option>
+            <option value="avancado">Advanced</option>
+            <option value="nativo">Native</option>
           </select>
         </p>
         <p>
-          <input id="ingles" name="ingles" v-model="skills.idiomas.ingles" type="checkbox">
-          <label for="ingles" class="checkbox">Inglês</label>
-          <select id="inglesLevel" name="inglesLevel" v-model="skills.idiomas.levels.inglesLevel" type="text" v-if="skills.idiomas.ingles">
-            <option value="basico">Básico</option>
-            <option value="intermediario">Intermediário</option>
-            <option value="avancado">Avançado</option>
-            <option value="nativo">Nativo</option>
+          <input id="english" name="english" v-model="skills.idioms.english" type="checkbox">
+          <label for="english" class="checkbox">English</label>
+          <select id="englishLevel" name="englishLevel" v-model="skills.idioms.levels.englishLevel" type="text" v-if="skills.idioms.english">
+            <option value="basico">Basic</option>
+            <option value="intermediario">Intermediate</option>
+            <option value="avancado">Advanced</option>
+            <option value="nativo">Native</option>
           </select>
         </p>
         <p>
-          <input id="espanhol" name="espanhol" v-model="skills.idiomas.espanhol" type="checkbox">
-          <label for="espanhol" class="checkbox">Espanhol</label>
-          <select id="espanholLevel" name="espanholLevel" v-model="skills.idiomas.levels.espanholLevel" type="text" v-if="skills.idiomas.espanhol">
-            <option value="basico">Básico</option>
-            <option value="intermediario">Intermediário</option>
-            <option value="avancado">Avançado</option>
-            <option value="nativo">Nativo</option>
+          <input id="spanish" name="spanish" v-model="skills.idioms.spanish" type="checkbox">
+          <label for="spanish" class="checkbox">Spanish</label>
+          <select id="spanishLevel" name="spanishLevel" v-model="skills.idioms.levels.spanishLevel" type="text" v-if="skills.idioms.spanish">
+            <option value="basico">Basic</option>
+            <option value="intermediario">Intermediate</option>
+            <option value="avancado">Advanced</option>
+            <option value="nativo">Native</option>
           </select>
         </p>
       </fieldset>
     </p>
   </div>`,
   computed: {
-    linguagens() {
-      return this.skills.linguagens;
+    languages() {
+      return this.skills.languages;
     },
-    portugues() {
-      return this.skills.idiomas.portugues;
+    portuguese() {
+      return this.skills.idioms.portuguese;
     },
-    ingles() {
-      return this.skills.idiomas.ingles;
+    english() {
+      return this.skills.idioms.english;
     },
-    espanhol() {
-      return this.skills.idiomas.espanhol;
+    spanish() {
+      return this.skills.idioms.spanish;
     },
-    portuguesLevel() {
-      return this.skills.idiomas.levels.portuguesLevel;
+    portugueseLevel() {
+      return this.skills.idioms.levels.portugueseLevel;
     },
-    inglesLevel() {
-      return this.skills.idiomas.levels.inglesLevel;
+    englishLevel() {
+      return this.skills.idioms.levels.englishLevel;
     },
-    espanholLevel() {
-      return this.skills.idiomas.levels.espanholLevel;
+    spanishLevel() {
+      return this.skills.idioms.levels.spanishLevel;
     },
   },
   watch: {
-    linguagens(linguagens) {
-      this.validLanguage(linguagens);
+    languages(languages) {
+      this.checkLanguage(languages);
     },
-    portugues(portugues) {
-      this.validIdiom(portugues);
+    portuguese(portuguese) {
+      this.checkIdiom(portuguese);
     },
-    portuguesLevel(portuguesLevel) {
-      this.validIdiom(portugues);
+    portugueseLevel(portugueseLevel) {
+      this.checkIdiom(portuguese);
     },
-    ingles(ingles) {
-      this.validIdiom(ingles);
+    english(english) {
+      this.checkIdiom(english);
     },
-    inglesLevel(inglesLevel) {
-      this.validIdiom(inglesLevel);
+    englishLevel(englishLevel) {
+      this.checkIdiom(englishLevel);
     },
-    espanhol(espanhol) {
-      this.validIdiom(espanhol);
+    spanish(spanish) {
+      this.checkIdiom(spanish);
     },
-    espanholLevel(espanholLevel) {
-      this.validIdiom(espanholLevel);
+    spanishLevel(spanishLevel) {
+      this.checkIdiom(spanishLevel);
     },
   },
   methods: {
-    validLanguage() {
-      if (this.linguagens.length < 1) {
-        this.error['linguagem'] = 'Escolha pelo menos uma linguagem.';
+    checkLanguage() {
+      if (this.languages.length < 1) {
+        this.error['linguagem'] = 'Choose at least 1 language';
         return;
       }
       this.error['linguagem'] = '';
     },
-    validIdiom() {
-      if ((this.portugues && !this.portuguesLevel) ||
-        (this.ingles && !this.inglesLevel) ||
-        (this.espanhol && !this.espanholLevel)
+    checkIdiom() {
+      if ((this.portuguese && !this.portugueseLevel) ||
+        (this.english && !this.englishLevel) ||
+        (this.spanish && !this.spanishLevel)
       ) {
-        this.error['idioma'] = 'Indique seu nível no idioma selecionado.';
+        this.error['idioms'] = 'Choose a level for selected Spanish';
         return;
       }
-      this.error['idioma'] = '';
+      this.error['idioms'] = '';
     }
   }
 });

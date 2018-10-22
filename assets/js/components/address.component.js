@@ -2,72 +2,72 @@ export const AddressComponent = Vue.component('address-component', {
   props: {
     error: Array,
     address: {
-      cidade: String,
-      estado: String,
+      city: String,
+      state: String,
     }
   },
   template: `
   <div>
     <p>
-      <span class="error" v-if="error.cidade">{{ error.cidade }}<br></span>
-      <label for="cidade">Cidade: </label>
-      <input id="cidade" name="cidade" v-model="address.cidade" type="text">
+      <span class="error" v-if="error.city">{{ error.city }}<br></span>
+      <label for="city">City: </label>
+      <input id="city" name="city" v-model="address.city" type="text">
     </p>
 
     <p>
-      <span class="error" v-if="error.estado">{{ error.estado }}<br></span>
-      <label for="estado">Estado: </label>
-      <input id="estado" name="estado" v-model="address.estado" type="text">
+      <span class="error" v-if="error.state">{{ error.state }}<br></span>
+      <label for="state">State: </label>
+      <input id="state" name="state" v-model="address.state" type="text">
     </p>
   </div>`,
   computed: {
-    cidade() {
-      return this.address.cidade;
+    city() {
+      return this.address.city;
     },
-    estado() {
-      return this.address.estado;
+    state() {
+      return this.address.state;
     }
   },
   watch: {
-    cidade(cidade) {
-      this.validCity(cidade);
+    city(city) {
+      this.checkCity(city);
     },
-    estado(estado) {
-      this.validState(estado);
+    state(state) {
+      this.checkState(state);
     }
   },
   methods: {
-    validCity(city) {
+    checkCity(city) {
       if (!city) {
-        this.error['cidade'] = 'A cidade é obrigatória.';
+        this.error['city'] = 'Type your city';
         return;
       } else if (city.length > 50) {
-        this.error['cidade'] = 'Limite de 50 caracteres no campo "cidade".';
+        this.error['city'] = 'Max 50 characters';
         return;
       } else if (!/^\D+$/.test(city)) {
-        this.error['cidade'] = 'Não são permitidos números no campo "cidade".';
+        this.error['city'] = 'Numbers are not allowed';
         return;
       } else if (!/^[A-Za-zÀ-ú ]+$/.test(city)) {
-        this.error['cidade'] = 'Não são permitidos caracteres especiais no campo "cidade".';
+        this.error['city'] = 'Special characters are not allowed';
         return;
       }
-      this.error['cidade'] = '';
+      this.error['city'] = '';
     },
-    validState(state) {
+    checkState(state) {
       if (!state) {
-        this.error['estado'] = 'O estado é obrigatório.';
+        this.error['state'] = 'O state é obrigatório.';
         return;
       } else if (state.length > 50) {
-        this.error['estado'] = 'Limite de 50 caracteres no campo "estado".';
+        this.error['state'] = 'Max 50 characters';
         return;
       } else if (!/^\D+$/.test(state)) {
-        this.error['estado'] = 'Não são permitidos números no campo "estado".';
+        this.error['state'] = 'Numbers are not allowed';
         return;
       } else if (!/^[A-Za-zÀ-ú ]+$/.test(state)) {
-        this.error['estado'] = 'Não são permitidos caracteres especiais no campo "estado".';
+        this.error['state'] = 'Special characters are not allowed';
         return;
       }
-      this.error['estado'] = '';
+      this.error['state'] = '';
     }
   }
 });
